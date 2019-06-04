@@ -15,7 +15,7 @@ before_script:
   - bash bin/install-wp-tests.sh $MYSQL_DATABASE root $MYSQL_ROOT_PASSWORD mysql $WP_VERSION true
 
   # Install PECL extension we rely on
-  - php --ini | grep "Loaded Configuration File"
+  - pecl config-set php_ini /tmp/php.ini
   - yes '' | pecl install -f $PECL_REDIS_VERSION
 
   # PHPUnit
