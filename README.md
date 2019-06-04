@@ -16,7 +16,7 @@ Store WordPress user session tokens in Redis rather than the usermeta table.
 
 ## Installation ##
 
-1. Install and configure Redis. There is a good tutorial [here](http://www.saltwebsites.com/2012/install-redis-245-service-centos-6).
+1. Install and configure Redis. There is a good tutorial [here](https://serverpilot.io/docs/how-to-install-the-php-redis-extension).
 2. Install the [Redis PECL module](http://pecl.php.net/package/redis).
 3. Activate the plugin network-wide or by placing it in `mu-plugins`.
 4. By default, the script will connect to Redis at 127.0.0.1:6379. See the *Connecting to Redis* section for further options.

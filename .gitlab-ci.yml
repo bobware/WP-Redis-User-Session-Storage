@@ -2,6 +2,7 @@ variables:
   # Configure mysql service (https://hub.docker.com/_/mysql/)
   MYSQL_DATABASE: wordpress_tests
   MYSQL_ROOT_PASSWORD: mysql
+  PECL_REDIS_VERSION: 'redis'
   WP_VERSION: latest
 
 cache:
@@ -12,6 +13,9 @@ cache:
 before_script:
   # Set up WordPress tests
   - bash bin/install-wp-tests.sh $MYSQL_DATABASE root $MYSQL_ROOT_PASSWORD mysql $WP_VERSION true
+
+  # Install PECL extension we rely on
+  - yes '' | pecl install -f $PECL_REDIS_VERSION
 
   # PHPUnit
   - |
@@ -25,6 +29,7 @@ PHPunit:PHP5.3:MySQL:
   stage: test
   variables:
     WP_VERSION: '5.1'
+    PECL_REDIS_VERSION: 'redis-2.2.8'
   image: containers.ethitter.com:443/docker/images/php:5.3
   services:
     - mysql:5.6
@@ -35,6 +40,8 @@ PHPunit:PHP5.3:MySQL:
 
 PHPunit:PHP5.6:MySQL:
   stage: test
+  variables:
+    PECL_REDIS_VERSION: 'redis-2.2.8'
   image: containers.ethitter.com:443/docker/images/php:5.6
   services:
     - mysql:5.6
