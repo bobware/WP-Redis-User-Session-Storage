@@ -269,6 +269,15 @@ class WP_Redis_User_Session_Storage extends WP_Session_Tokens {
 	protected function get_key() {
 		return $this->prefix . ':' . $this->user_id;
 	}
+
+	/**
+	 * Is Redis connected?
+	 *
+	 * @return bool
+	 */
+	public function redis_connected() {
+		return $this->redis_connected;
+	}
 }
 
 /**
